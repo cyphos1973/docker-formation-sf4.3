@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block description 'A creation form for classrooms.' %}
+
+{% block title 'Create a classroom' %}
+
+{% block body %}
+    <section>
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col">
+                    <h1>Create a new Classroom</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ include('classroom/_form.html.twig') }}
+                </div>
+                <a href="{{ path('app_classroom_index') }}">back to list</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

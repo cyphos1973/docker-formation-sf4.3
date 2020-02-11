@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block description 'A creation form for students.' %}
+
+{% block title 'Create a student' %}
+
+{% block body %}
+    <section>
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col">
+                    <h1>Create a new Student</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ include('student/_form.html.twig') }}
+                </div>
+                <a href="{{ path('app_student_index') }}">back to list</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

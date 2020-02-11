@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block description 'A list of students.' %}
+
+{% block title 'Index' %}
+
+{% block body %}
+    <section>
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col">
+                    <h1>Students</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                        <tr>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>BirthDate</th>
+                            <th>Gender</th>
+                            <th>FirstMark</th>
+                            <th>SecondMark</th>
+                            <th>Average</th>
+                            <th>Id</th>
+                            <th>Uuid</th>
+                            <th>CreatedAt</th>
+                            <th>UpdatedAt</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for student in students %}
+                            <tr>
+                                <td>{{ student.firstName }}</td>
+                                <td>{{ student.lastName }}</td>
+                                <td>{{ student.birthDate ? student.birthDate|date('Y-m-d') : '' }}</td>
+                                <td>{{ student.gender ? 'Yes' : 'No' }}</td>
+                                <td>{{ student.firstMark }}</td>
+                                <td>{{ student.secondMark }}</td>
+                                <td>{{ student.average ?: 'N/A' }}</td>
+                                <td>{{ student.id }}</td>
+                                <td>{{ student.uuid }}</td>
+                                <td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ student.updatedAt ? student.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('app_student_show', {'uuid': student.uuid}) }}">show</a>
+                                    <a href="{{ path('app_student_edit', {'uuid': student.uuid}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="12" class="bg-danger">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('app_student_new') }}" class="btn btn-sm btn-dark">Create new</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

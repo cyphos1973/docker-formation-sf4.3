@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block description 'Registration form.' %}
+
+{% block title 'Register' %}
+
+{% block body %}
+    <section>
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col">
+                    <h1>Register</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                    {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.username) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+
+                    <button class="btn btn-sm btn-dark">Register</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

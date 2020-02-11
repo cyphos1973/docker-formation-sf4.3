@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block description 'A list of classrooms.' %}
+
+{% block title 'Index' %}
+
+{% block body %}
+    <section>
+        <div class="container jumbotron">
+            <div class="row">
+                <div class="col">
+                    <h1>Classrooms</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Grade</th>
+                            <th>Id</th>
+                            <th>Uuid</th>
+                            <th>CreatedAt</th>
+                            <th>UpdatedAt</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for classroom in classrooms %}
+                            <tr>
+                                <td>{{ classroom.name }}</td>
+                                <td>{{ classroom.grade }}</td>
+                                <td>{{ classroom.id }}</td>
+                                <td>{{ classroom.uuid }}</td>
+                                <td>{{ classroom.createdAt ? classroom.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ classroom.updatedAt ? classroom.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('app_classroom_show', {'uuid': classroom.uuid}) }}">show</a>
+                                    <a href="{{ path('app_classroom_edit', {'uuid': classroom.uuid}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('app_classroom_new') }}" class="btn btn-sm btn-dark">Create new</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
