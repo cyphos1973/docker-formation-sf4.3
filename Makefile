@@ -1,6 +1,7 @@
 DOCKER_COMPOSE		= docker-compose
-SYMFONY				= $(DOCKER_COMPOSE) exec -T php /usr/bin/entrypoint make --directory=app/
-CONTAINER_NAME      = docker-formation
+SYMFONY			= $(DOCKER_COMPOSE) exec -T php /usr/bin/entrypoint make --directory=app/
+CONTAINER_NAME		= docker-starter_php
+
 
 build:
 	$(DOCKER_COMPOSE) build
@@ -9,16 +10,28 @@ pull:
 	$(DOCKER_COMPOSE) pull
 
 start:
-	$(DOCKER_COMPOSE) up -d
+	$(DOCKER_COMPOSE) up -d --remove-orphans
 
 stop:
 	$(DOCKER_COMPOSE) stop
 
-exec:
-	docker exec -it ${CONTAINER_NAME}_php bash
+stop-all:
+	 docker stop $$(sudo docker ps -a -q)
+
+stop-remove-all:
+	sudo docker stop $$(sudo docker ps -a -q)
+	sudo docker rm $$(sudo docker ps -a -q)
+	sudo docker rmi $$(sudo docker images -a -q) -f
+	sudo docker network rm $$(sudo docker images -a -q)
 
 down:
-	${DOCKER-COMPOSE} down
+	$(DOCKER_COMPOSE) down
 
-compose-install:
-	docker run -it ${CONTAINER_NAME}_php compose install
+prune:
+	docker system prune
+
+install:
+	$(DOCKER_COMPOSE) build
+	$(DOCKER_COMPOSE) pull
+	$(DOCKER_COMPOSE) up -d
+	docker exec -it $(CONTAINER_NAME) bash
