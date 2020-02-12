@@ -1,5 +1,6 @@
 Docker-starter with symfony 4.3
 
+![alt text](capture_formation.png?raw=true "Default page")
 - apache
 - mysql
 - php
