@@ -31,10 +31,20 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_index') }}" title="Click to get the homepage">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_classroom_index') }}" title="Click to get the
+                        classroom page">Classrooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_student_index') }}" title="Click to get the student
+                        page">Students</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_logout') }}" title="Click to logout">Logout</a>
